@@ -1,5 +1,3 @@
-
-
 # 🧠 Brain Tumor Segmentation using 3D U-Net
 
 This project implements a robust pipeline for 3D MRI brain tumor segmentation using an enhanced 3D U-Net architecture. The code handles data preprocessing, model training, evaluation, and visualization with support for multiple files.
@@ -24,15 +22,12 @@ This project implements a robust pipeline for 3D MRI brain tumor segmentation us
 
 ---
 
-
-
-
 ## 🧩 Requirements
 
 Make sure you have the following libraries installed:
 
 ```bash
-pip install nibabel numpy torch matplotlib torchio tqdm scipy
+pip install nibabel numpy torch matplotlib torchio tqdm scipy jupyter
 ```
 
 ---
@@ -55,6 +50,8 @@ Task01_BrainTumour/
 
 ## 🛠️ How to Run
 
+### Option 1: Python Script
+
 1. **Set the dataset path** inside `main()`:
 ```python
 base_path = os.path.expanduser("~/Downloads/Task01_BrainTumour (1)/Task01_BrainTumour/")
@@ -65,10 +62,30 @@ base_path = os.path.expanduser("~/Downloads/Task01_BrainTumour (1)/Task01_BrainT
 python Brain\ seg\ open\ all\ files.py
 ```
 
-3. **Results**:
-   - Trained weights are saved as `model_weights.pth`
-   - Visualizations saved under `results/`
-   - Segmented NIfTI files for each input MRI
+### Option 2: Jupyter Notebook
+
+1. **Launch Jupyter Notebook**:
+```bash
+jupyter notebook
+```
+
+2. **Open the notebook**:
+```
+Brain_Tumor_Segmentation.ipynb
+```
+
+3. **Set the dataset path** in the notebook configuration cell:
+```python
+base_path = os.path.expanduser("~/Downloads/Task01_BrainTumour (1)/Task01_BrainTumour/")
+```
+
+4. **Run all cells** or execute them step by step to train the model and visualize results.
+
+### Results
+
+- Trained weights are saved as `model_weights.pth`
+- Visualizations saved under `results/`
+- Segmented NIfTI files for each input MRI
 
 ---
 
@@ -94,6 +111,18 @@ python Brain\ seg\ open\ all\ files.py
 
 ---
 
+## 📊 Notebook Features
+
+The Jupyter notebook provides additional benefits:
+
+- **Interactive Experimentation**: Easily modify parameters and see results
+- **Visualizations**: Real-time plots of training progress
+- **Step-by-Step Execution**: Run each component separately for easier debugging
+- **Markdown Documentation**: Detailed explanations of each code section
+- **Interactive Parameter Tuning**: Use widgets to adjust hyperparameters
+
+---
+
 ## 📈 Sample Visualization
 
 MRI Slice | Ground Truth | Prediction
@@ -105,7 +134,8 @@ MRI Slice | Ground Truth | Prediction
 ## 📌 Notes
 
 - The model processes 3D volumes in depth-wise chunks (default: 16 slices).
-- You can change the number of files to process via `num_files_to_process` in `main()`.
+- You can change the number of files to process via `num_files_to_process` in the configuration.
 - Make sure GPU is available for best performance. Otherwise, training will run on CPU.
+- The Jupyter notebook includes more detailed documentation and visualizations than the script version.
 
 ---
