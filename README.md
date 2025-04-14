@@ -44,7 +44,16 @@ cd brain-tumor-segmentation
 pip install nibabel numpy torch matplotlib torchio tqdm scipy jupyter
 ```
 
-### 2. Dataset Structure
+### 2. Download Dataset
+
+- Download the BraTS (Brain Tumor Segmentation) dataset from [Medical Decathlon](http://medicaldecathlon.com/)
+- Direct link: [Task01_BrainTumour.tar](https://drive.google.com/file/d/1A2IU8Sgea1h3fYLpYtFb2v7NYdMjvEhU/view?usp=sharing)
+- Extract the dataset to your preferred location:
+  ```bash
+  tar -xf Task01_BrainTumour.tar -C /path/to/extract
+  ```
+
+### 3. Dataset Structure
 
 Expected directory structure for input data:
 
@@ -58,7 +67,7 @@ Task01_BrainTumour/
 │   └── ...
 ```
 
-### 3. Running the Application
+### 4. Running the Application
 
 #### Option 1: Python Script
 
@@ -122,11 +131,6 @@ The project uses a customized 3D U-Net model designed for volumetric segmentatio
 - Trained weights saved as `model_weights.pth`
 - Visualizations stored in the `results/` directory
 - Segmented NIfTI files for each input MRI
-
-## 📊 Sample Visualization
-
-MRI Slice | Ground Truth | Prediction
-:--:|:--:|:--:
 
 ## 🤝 Contributing
 
