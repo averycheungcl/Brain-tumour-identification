@@ -1,38 +1,50 @@
 # 🧠 Brain Tumor Segmentation using 3D U-Net
 
-This project implements a robust pipeline for 3D MRI brain tumor segmentation using an enhanced 3D U-Net architecture. The code handles data preprocessing, model training, evaluation, and visualization with support for multiple files.
+<div align="center">
 
-## 📁 Project Structure
+**Robust 3D MRI brain tumor segmentation with enhanced U-Net architecture**
 
-- **Data Input**: Brain MRI scans and their corresponding masks in NIfTI format (`.nii.gz`).
-- **Model**: A customized 3D U-Net.
-- **Training**: Dice + Focal + BCE loss, with data augmentation and learning rate scheduling.
-- **Output**: Trained model weights, segmentation visualizations, and saved prediction volumes.
+[![Python 3.x](https://img.shields.io/badge/python-3.x-blue.svg)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/pytorch-2.x-orange.svg)](https://pytorch.org/)
+[![TorchIO](https://img.shields.io/badge/TorchIO-latest-brightgreen.svg)](https://torchio.readthedocs.io/)
+[![NiBabel](https://img.shields.io/badge/NiBabel-latest-yellow.svg)](https://nipy.org/nibabel/)
 
----
+</div>
 
-## 🚀 Features
+## ✨ Features
 
-- ✅ 3D U-Net with customizable feature maps  
-- ✅ Augmentation using `TorchIO`  
-- ✅ Patch-wise training for memory efficiency  
-- ✅ Dice, Focal, and BCE loss for better segmentation performance  
-- ✅ Logging and visualization support  
-- ✅ Post-processing for noise removal in predicted masks
+- 🧠 **Enhanced 3D U-Net architecture** for volumetric segmentation
+- 📊 **Multi-modal MRI support** with 4-channel input processing
+- 🔄 **Advanced data augmentation** via TorchIO
+- 📈 **Combined loss functions** (Dice + Focal + BCE) for optimal training
+- 🧩 **Memory-efficient patch-wise training** for large 3D volumes
+- 📊 **Comprehensive visualization tools** for segmentation results
 
----
+## 📋 Requirements
 
-## 🧩 Requirements
+- Python 3.x
+- PyTorch
+- TorchIO
+- NiBabel
+- NumPy
+- Matplotlib
+- SciPy
+- Jupyter (optional)
 
-Make sure you have the following libraries installed:
+## 🚀 Quick Start
+
+### 1. Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/yourusername/brain-tumor-segmentation.git
+cd brain-tumor-segmentation
+
+# Install dependencies
 pip install nibabel numpy torch matplotlib torchio tqdm scipy jupyter
 ```
 
----
-
-## 📂 Dataset Structure
+### 2. Dataset Structure
 
 Expected directory structure for input data:
 
@@ -46,112 +58,82 @@ Task01_BrainTumour/
 │   └── ...
 ```
 
----
+### 3. Running the Application
 
-## 🛠️ How to Run
+#### Option 1: Python Script
 
-### Option 1: Python Script
-
-1. **Set the dataset path** inside `main()`:
-```python
-base_path = os.path.expanduser("~/Downloads/Task01_BrainTumour (1)/Task01_BrainTumour/")
-```
-
-2. **Run the training**:
 ```bash
-python Brain\ seg\ open\ all\ files.py
+# Set the dataset path inside main()
+python "Brain seg open all files.py"
 ```
 
-### Option 2: Jupyter Notebook
+#### Option 2: Jupyter Notebook
 
-1. **Launch Jupyter Notebook**:
 ```bash
 jupyter notebook
+# Open Brain_Tumor_Segmentation.ipynb
 ```
 
-2. **Open the notebook**:
-```
-Brain_Tumor_Segmentation.ipynb
-```
+## 🔍 How It Works
 
-3. **Set the dataset path** in the notebook configuration cell:
-```python
-base_path = os.path.expanduser("~/Downloads/Task01_BrainTumour (1)/Task01_BrainTumour/")
-```
+1. **Data Preprocessing**
+   - Load multi-modal MRI scans (T1, T2, FLAIR, etc.)
+   - Normalize intensity values
+   - Extract 3D patches for memory-efficient training
 
-4. **Run all cells** or execute them step by step to train the model and visualize results.
+2. **Model Architecture**
+   - 3D U-Net with customizable feature maps
+   - Encoder path for feature extraction
+   - Decoder path with skip connections for precise localization
 
-### Results
+3. **Training Process**
+   - Combined loss functions for better boundary detection
+   - Data augmentation for improved generalization
+   - Learning rate scheduling and early stopping
 
-- Trained weights are saved as `model_weights.pth`
-- Visualizations saved under `results/`
+4. **Segmentation & Post-processing**
+   - Sliding window inference for full-volume prediction
+   - Noise removal in predicted masks
+   - Final segmentation in NIfTI format
+
+5. **Evaluation & Visualization**
+   - Dice coefficient and IoU metrics
+   - Slice-by-slice visualization of results
+   - Comparison plots of ground truth vs prediction
+
+## 🧠 The Model
+
+The project uses a customized 3D U-Net model designed for volumetric segmentation:
+
+| Layer | Feature Maps | Resolution |
+|-------|--------------|------------|
+| Input | 4 (multi-modal) | Original |
+| Encoder 1 | 16 | 1/2 |
+| Encoder 2 | 32 | 1/4 |
+| Encoder 3 | 64 | 1/8 |
+| Bottleneck | 128 | 1/16 |
+| Decoder 1 | 64 | 1/8 |
+| Decoder 2 | 32 | 1/4 |
+| Decoder 3 | 16 | 1/2 |
+| Output | 1 (segmentation) | Original |
+
+## 📁 Output
+
+- Trained weights saved as `model_weights.pth`
+- Visualizations stored in the `results/` directory
 - Segmented NIfTI files for each input MRI
 
----
-
-## 🔍 Key Components
-
-### 🧠 `UNet3D`
-- Standard encoder-decoder U-Net with skip connections and dropout
-- Designed for multi-modal MRI (4 channels)
-
-### 🧪 `MRIDataset`
-- Dynamically extracts volumetric patches from MRI scans
-- Applies augmentation during training
-
-### 📉 `Loss Functions`
-- Combines BCE, Dice, and Focal loss for robust training
-
-### 🎯 `Training Loop`
-- Tracks training/validation metrics (loss, Dice, IoU)
-- Early stopping and learning rate reduction on plateau
-
-### 👁️ `visualize_results`
-- Saves comparative plots of MRI slices, ground truth, and predictions
-
----
-
-## 📊 Notebook Features
-
-The Jupyter notebook provides additional benefits:
-
-- **Interactive Experimentation**: Easily modify parameters and see results
-- **Visualizations**: Real-time plots of training progress
-- **Step-by-Step Execution**: Run each component separately for easier debugging
-- **Markdown Documentation**: Detailed explanations of each code section
-- **Interactive Parameter Tuning**: Use widgets to adjust hyperparameters
-
----
-
-## 📖 Technical Documentation
-
-For developers interested in understanding the implementation details, architecture decisions, and technical insights behind this project, see the [TECHNICAL_DETAILS.md](./TECHNICAL_DETAILS.md) file. This document provides in-depth explanations of:
-
-- Data preprocessing techniques
-- 3D U-Net architecture specifics
-- Loss function design and rationale
-- Training optimizations
-- Inference strategy with sliding window approach
-- Visualization methods
-- Potential extensions for production use
-
-This technical documentation can serve as a reference for developers or as preparation material for technical discussions and interviews.
-
----
-
-## 📈 Sample Visualization
+## 📊 Sample Visualization
 
 MRI Slice | Ground Truth | Prediction
 :--:|:--:|:--:
-![MRI](results/segmentation_results_file_0.png)
 
----
+## 🤝 Contributing
 
-## 📌 Notes
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-- The model processes 3D volumes in depth-wise chunks (default: 16 slices).
-- You can change the number of files to process via `num_files_to_process` in the configuration.
-- Make sure GPU is available for best performance. Otherwise, training will run on CPU.
-- The Jupyter notebook includes more detailed documentation and visualizations than the script version.
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
