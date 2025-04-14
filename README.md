@@ -1,6 +1,4 @@
-Here’s a comprehensive `README.md` for your project based on the code you provided:
 
----
 
 # 🧠 Brain Tumor Segmentation using 3D U-Net
 
@@ -25,6 +23,9 @@ This project implements a robust pipeline for 3D MRI brain tumor segmentation us
 - ✅ Post-processing for noise removal in predicted masks
 
 ---
+
+
+
 
 ## 🧩 Requirements
 
