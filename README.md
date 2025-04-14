@@ -123,6 +123,22 @@ The Jupyter notebook provides additional benefits:
 
 ---
 
+## 📖 Technical Documentation
+
+For developers interested in understanding the implementation details, architecture decisions, and technical insights behind this project, see the [TECHNICAL_DETAILS.md](./TECHNICAL_DETAILS.md) file. This document provides in-depth explanations of:
+
+- Data preprocessing techniques
+- 3D U-Net architecture specifics
+- Loss function design and rationale
+- Training optimizations
+- Inference strategy with sliding window approach
+- Visualization methods
+- Potential extensions for production use
+
+This technical documentation can serve as a reference for developers or as preparation material for technical discussions and interviews.
+
+---
+
 ## 📈 Sample Visualization
 
 MRI Slice | Ground Truth | Prediction
